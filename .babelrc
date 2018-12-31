@@ -1,0 +1,12 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env", {
+                "targets": {
+                    // Configs for converting >=es6 to es5 for all the browsers
+                    "browsers": ["last 5 versions", "ie >= 8"]
+                }
+            }
+        ]
+    ]
+}
