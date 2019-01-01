@@ -13,9 +13,7 @@ export default class Search {
         const finalLink = `${proxy}${url}/api/search?key=${key}&q=${this.query}`;
         try {
             const res = await axios(finalLink);
-            console.log(res);
             this.result = res.data.recipes;
-            console.log(this.result);
         } catch (err) {
             console.log(err);
         } finally {
