@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     // Entry point of the app 
@@ -23,6 +24,11 @@ module.exports = {
     plugins: [
         new HTMLWebpackPlugin({
             filename: 'index.html', template: './src/index.html'
+        }),
+        new webpack.DefinePlugin({
+            'process.env.API_KEY': JSON.stringify(process.env.API_KEY),
+            'process.env.API_URL': JSON.stringify(process.env.API_URL),
+            'process.env.CORS_PROXY': JSON.stringify(process.env.CORS_PROXY)
         })
     ],
 
