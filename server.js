@@ -6,9 +6,6 @@ var app = express();
 const PORT = process.env.PORT || 8080;
 const publicPath = path.join(__dirname, 'dist');
 
-const dotenv = require('dotenv');
-dotenv.config();
-
 app.use(function (req, res, next){
   if (req.headers['x-forwarded-proto'] === 'https') {
     res.redirect('http://' + req.hostname + req.url);
