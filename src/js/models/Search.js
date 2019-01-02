@@ -1,4 +1,4 @@
-import api from '../../../config/secret';
+import api from '../../../config/local';
 import axios from 'axios';
 
 export default class Search {
