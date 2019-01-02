@@ -1,7 +1,13 @@
 // Global app controller
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
-import {elements, renderLoader, clearLoader} from './views/base'
+import * as recipeView from './views/recipeView';
+import {
+    elements,
+    renderLoader,
+    clearLoader
+} from './views/base'
 
 /* Global State of the App
  * - Search Object
@@ -11,7 +17,10 @@ import {elements, renderLoader, clearLoader} from './views/base'
  */
 const state = {};
 
-const controlSearch = async() => {
+/**
+ * SEARCH CONTROLLER
+ */
+const controlSearch = async () => {
     // 1) Get query from view
     const query = searchView.getInput();
     if (query) {
@@ -23,14 +32,17 @@ const controlSearch = async() => {
         searchView.clearResults();
         renderLoader(elements.searchRes);
 
-        // 4) Search for recipes
-        await state
-            .search
-            .getResults();
+        try {
+            // 4) Search for recipes
+            await state.search.getResults();
 
-        // 5) Render results on UI
-        clearLoader();
-        searchView.renderResults(state.search.result);
+            // 5) Render results on UI
+            clearLoader();
+            searchView.renderResults(state.search.result);
+        } catch (e) {
+            clearLoader();
+            alert('Error processing search. Contact Admin for API Usage!');
+        }
     }
 };
 
@@ -53,3 +65,39 @@ elements
             searchView.renderResults(state.search.result, goToPage);
         }
     });
+
+/**
+ * RECIPE CONTROLLER
+ */
+const controlRecipe = async () => {
+    // 1) Get Id from URL
+    const id = window.location.hash.replace('#', '');
+
+    if (id) {
+        // 2) New recipe object and add to state
+         state.recipe = new Recipe(id);
+
+        // 3) Prepare UI for results
+        recipeView.clearRecipe();
+        renderLoader(elements.recipe);
+        if(state.search) searchView.highlightSelected(id);
+        
+        try {
+            // 4) Get Recipe data and parse ingredients
+            await state.recipe.getRecipe();
+            state.recipe.parseIngredients();
+            
+            // 5) Calculate servings and time
+            state.recipe.calcTime();
+            state.recipe.calcServings();
+           
+            // 6) Render results on UI
+            clearLoader();
+            recipeView.renderRecipe(state.recipe);
+        } catch (err) {
+            alert('98 Error processing recipe!');
+        }
+    }
+}
+
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
