@@ -32,6 +32,7 @@
     "axios": "^0.18.0",
     "babel-loader": "^8.0.4",
     "babel-polyfill": "^6.26.0",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "fractional": "^1.0.0",
     "live-server": "^1.2.1",
