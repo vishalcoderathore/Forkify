@@ -121,6 +121,16 @@
     .btn-tiny:not(:last-child) {
       margin-right: .3rem; }
   
+  .heading-1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #F59A83;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+    text-align: center;
+    transform: skewY(-3deg); }
+
   .heading-2 {
     font-size: 1.8rem;
     font-weight: 600;

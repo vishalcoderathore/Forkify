@@ -9,6 +9,8 @@ export const clearInput = () => {
 export const clearResults = () => {
     elements.searchResList.innerHTML = '';
     elements.searchResPages.innerHTML = '';
+    var elem = elements.searchListHeading;
+    elem.parentNode.removeChild(elem);
 };
 
 export const highlightSelected = id => {
