@@ -16,8 +16,6 @@ export default class Search {
             this.result = res.data.recipes;
         } catch (err) {
             console.log(err);
-        } finally {
-            console.log(`Finally Block => Recepies are fetched from ${finalLink}`);
         }
     }
 }
