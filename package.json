@@ -7,6 +7,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "webpack": "webpack-dev-server --mode development --open",
+    "start": "node server.js",
     "heroku-postbuild": "npm run build"
   },
   "repository": {
@@ -31,6 +32,7 @@
     "axios": "^0.18.0",
     "babel-loader": "^8.0.4",
     "babel-polyfill": "^6.26.0",
+    "express": "^4.16.4",
     "fractional": "^1.0.0",
     "live-server": "^1.2.1",
     "uniqid": "^5.0.3"
